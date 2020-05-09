@@ -1,0 +1,35 @@
+
+.main-menu-container {
+  height: 100%;
+  width: 100%;
+
+  .menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .menu-item {
+    //color: $primary;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 55px;
+      width: 55px;
+    }
+
+    .menu-item-title {
+      margin-left: 50px;
+      font-size: 20px;
+    }
+
+    &:hover {
+      //background-color: $sidenav-hover;
+    }
+  }
+}

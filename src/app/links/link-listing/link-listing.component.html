@@ -1,0 +1,21 @@
+<div class="link-listing-container">
+
+  <form [formGroup]="linkForm" (submit)="addLink()">
+    <div class=new-link-input-container>
+      <input #linkInput
+      formControlName="link"
+      class="new-link-input"
+      type="text">
+    </div>
+  </form>
+
+  <div class=link-list-container>
+    <div *ngFor="let link of linkList">
+      <div class=link-item *ngIf="!link.isDeleted">
+        <a [href]="link.path" class=link>{{link.path}}</a>
+        <app-button class="delete-link-icon" [icon]="'icon-bin'" (onClick)="deleteLink(link.id)"></app-button>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,6 @@
+<aside class="sidenav-container main-shadow" [ngClass]="{'opened-state': isOpened}">
+  <button class="menu-switcher icon-th" (click)="toggleMenu()">
+  </button>
+
+  <app-main-menu [isMenuOpened]="isOpened"></app-main-menu>
+</aside>

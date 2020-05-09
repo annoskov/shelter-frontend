@@ -1,0 +1,18 @@
+
+.header-container {
+  display: block;
+  height: 55px;
+  //background: $primary;
+
+  .header-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    .left-functional-block {
+      height: 55px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
