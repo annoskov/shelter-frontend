@@ -6,9 +6,8 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthorizationModule } from './authorization/authorization.module';
+import { AuthorizationModule } from './authorization-screen/authorization.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LinksModule } from './links/links.module';
 import { StoreModule } from '@ngrx/store';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { StoreModule } from '@ngrx/store';
     CoreModule,
     SharedModule,
     DashboardModule,
-    LinksModule,
     AuthorizationModule,
     AppRoutingModule,
     NoopAnimationsModule,

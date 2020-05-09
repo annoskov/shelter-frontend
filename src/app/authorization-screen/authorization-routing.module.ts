@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Route } from '../core/services/route.service';
-import { LoginComponent } from './login/login.component';
+import {RegisterContainerComponent} from "./register-container/register-container.component";
 
 const routes: Routes = [
   Route.withEntryShell([
     {
-      path: 'login',
-      component: LoginComponent,
-      data: {title: 'Login'}
+      path: 'register',
+      component: RegisterContainerComponent,
+      data: {title: 'Shelter - Shelter Register'}
     }
   ])
 ];

@@ -2,7 +2,6 @@
     <ul class="menu-list">
         <li class="menu-item" *ngFor="let item of menuItems$ | async" (click)="onMenuItemClick(item.link)">
             <div class="icon-btn">
-                <app-button [icon]="item.iconClass"></app-button>
             </div>
             <p *ngIf="isMenuOpened" class="menu-item-title">{{item.name}}</p>
         </li>
