@@ -1,0 +1,13 @@
+.entry-container {
+  height: 2000px;
+
+  .sidenav-container {
+    height: 100%;
+  }
+
+  .sidenav {
+    width: 35%;
+    background: darkgray;
+    transition: 0.3s all
+  }
+}

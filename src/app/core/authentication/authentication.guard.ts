@@ -17,7 +17,7 @@ export class AuthenticationGuard implements CanActivate {
     // }
 
     // temporary
-    this.router.navigate(['/register'], { replaceUrl: true });
+    this.router.navigate(['/entry'], { replaceUrl: true });
     return true;
   }
 }
