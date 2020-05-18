@@ -1,0 +1,14 @@
+<div class="authorization-container">
+    <ng-container *ngIf="mode$ | async as mode">
+        <app-authorization-header [mode]="mode" (toggleModeEvent)="toggleMode()"></app-authorization-header>
+
+        <ng-container *ngIf="mode === authorizationHeaderModes.Login">
+            login
+        </ng-container>
+
+        <ng-container *ngIf="mode === authorizationHeaderModes.Register">
+            register
+        </ng-container>
+
+    </ng-container>
+</div>

@@ -1,8 +1,9 @@
 <div #entryContainer class="entry-container">
-    <mat-sidenav-container
-            class="sidenav-container" (backdropClick)="closeSideNav()" [hasBackdrop]="false">
+    <mat-sidenav-container class="sidenav-container" (backdropClick)="closeSideNav()" [hasBackdrop]="false">
         <mat-sidenav #sidenav class="sidenav" position="end">
-            <h2>sidenav</h2>
+            <section class="sidenav-main-section">
+                <app-authorization-container></app-authorization-container>
+            </section>
         </mat-sidenav>
         <mat-sidenav-content>
             <app-landing></app-landing>

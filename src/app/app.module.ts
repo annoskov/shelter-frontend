@@ -25,7 +25,7 @@ import {EntryModule} from './entry/entry.module';
         StoreModule.forRoot({}, {})
     ],
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     providers: [],
     bootstrap: [AppComponent]
