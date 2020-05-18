@@ -8,21 +8,21 @@ import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
 import {AuthorizationModule} from './authorization/authorization.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {StoreModule} from '@ngrx/store';
 import {EntryModule} from './entry/entry.module';
+import {StateModule} from '../core-data/state/state.module';
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
         CoreModule,
+        StateModule,
         SharedModule,
         DashboardModule,
         AuthorizationModule,
         EntryModule,
         AppRoutingModule,
         NoopAnimationsModule,
-        StoreModule.forRoot({}, {})
     ],
     declarations: [
         AppComponent,
