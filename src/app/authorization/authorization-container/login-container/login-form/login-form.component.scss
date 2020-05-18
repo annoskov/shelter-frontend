@@ -1,0 +1,29 @@
+.login-form-wrapper {
+  height: 100%;
+  padding: 0 50px;
+
+  .login-form-title {
+    margin: 0;
+  }
+
+  .link {
+    color: deepskyblue;
+    cursor: pointer;
+  }
+
+  .login-header-block,
+  .email-form-field,
+  .password-form-field,
+  .remember-form-field,
+  .btn-block,
+  .forgot-password-link {
+    display: block;
+    padding-bottom: 15px;
+  }
+
+  .btn-block {
+    .login-button {
+      width: 100%;
+    }
+  }
+}

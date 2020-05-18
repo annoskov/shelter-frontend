@@ -1,5 +1,10 @@
 .authorization-container {
-  .authorization-header {
+  height: 100%;
 
+  .authorization-form-wrapper {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
