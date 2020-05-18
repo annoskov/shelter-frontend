@@ -1,1 +1,27 @@
-<p>register-form works!</p>
+<div class="register-form-wrapper">
+    <div class="register-header-block">
+        <h1 class="register-form-title">Register</h1>
+        <small>or <a class="link" [tabindex]="0">login</a></small>
+    </div>
+    <form [formGroup]="registerForm" novalidate (submit)="onRegisterFormSubmit()">
+        <mat-form-field class="firstname-form-field">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName" matInput>
+        </mat-form-field>
+        <mat-form-field class="lastname-form-field">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastName" matInput>
+        </mat-form-field>
+        <mat-form-field class="email-form-field">
+            <mat-label>E-mail</mat-label>
+            <input formControlName="email" matInput>
+        </mat-form-field>
+        <mat-form-field class="password-form-field">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput>
+        </mat-form-field>
+        <div class="btn-block">
+            <button class="register-button" mat-flat-button color="primary">Register</button>
+        </div>
+    </form>
+</div>

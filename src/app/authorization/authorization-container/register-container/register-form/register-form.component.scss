@@ -1,0 +1,29 @@
+.register-form-wrapper {
+  height: 100%;
+  padding: 0 50px;
+
+  .register-form-title {
+    margin: 0;
+  }
+
+  .link {
+    color: deepskyblue;
+    cursor: pointer;
+  }
+
+  .register-header-block,
+  .firstname-form-field,
+  .lastname-form-field,
+  .email-form-field,
+  .password-form-field,
+  .btn-block {
+    display: block;
+    padding-bottom: 15px;
+  }
+
+  .btn-block {
+    .register-button {
+      width: 100%;
+    }
+  }
+}
