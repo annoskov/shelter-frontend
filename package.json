@@ -14,7 +14,7 @@
   "jest": {
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [
-      "<rootDir>/src/tests/setupJest.ts"
+      "<rootDir>/src/tests/jest-config.ts"
     ]
   },
   "private": true,
