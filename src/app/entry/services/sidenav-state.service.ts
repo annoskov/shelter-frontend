@@ -1,11 +1,10 @@
 import {Injectable, NgZone} from '@angular/core';
-import {ElementScrollPercentageService} from '../../../services/element-scroll-percentage.service';
-import {fromEvent, Subject} from 'rxjs';
+import {BehaviorSubject, fromEvent, Subject} from 'rxjs';
 import {distinctUntilChanged, filter, map, startWith, takeUntil} from 'rxjs/operators';
 import {EntryComponent} from '../entry.component';
 
 
-enum SideNavState {
+export enum SideNavStates {
     'Open',
     'Close'
 }
@@ -15,36 +14,26 @@ enum SideNavState {
 })
 export class SidenavStateService {
 
-    constructor(private ngZone: NgZone,
-                private elementScrollPercentageService: ElementScrollPercentageService) {
+    constructor(private ngZone: NgZone) {
     }
 
-    public listenScroll(openSideNavFn: () => void, closeSideNavFn: () => void, context: EntryComponent, destroyer$: Subject<boolean>) {
+    public listenScroll(context: EntryComponent, destroyer$: Subject<boolean>) {
+        const subj$: BehaviorSubject<SideNavStates> = new BehaviorSubject<SideNavStates>(SideNavStates.Close);
         this.ngZone.runOutsideAngular(() => {
             fromEvent(window, 'scroll')
                 .pipe(
                     takeUntil(destroyer$),
                     startWith(true),
-                    map(() => {
-                        const currentScrollPercentage: number = this.elementScrollPercentageService.getScroll(document);
-                        return currentScrollPercentage > 40 ? SideNavState.Close : SideNavState.Open;
-                    }),
-                    filter((state: SideNavState) =>
-                        state === SideNavState.Open && !context.sidenav.opened ||
-                        state === SideNavState.Close && context.sidenav.opened
+                    map(() => window.pageYOffset > 350 ? SideNavStates.Close : SideNavStates.Open),
+                    filter((state: SideNavStates) =>
+                        state === SideNavStates.Open && !context.sidenav.opened ||
+                        state === SideNavStates.Close && context.sidenav.opened
                     ),
                     distinctUntilChanged(),
                 )
-                .subscribe((state: SideNavState) => {
-                    this.ngZone.run(() => {
-                        if (state === SideNavState.Open) {
-                            openSideNavFn.call(context);
-                        } else {
-                            closeSideNavFn.call(context);
-                        }
-                    });
-                });
+                .subscribe((state: SideNavStates) => this.ngZone.run(() => subj$.next(state)));
         });
+        return subj$.asObservable();
     }
 
 }

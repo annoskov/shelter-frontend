@@ -1,6 +1,6 @@
 <div #entryContainer class="entry-container">
-    <mat-sidenav-container class="sidenav-container" (backdropClick)="closeSideNav()" [hasBackdrop]="false">
-        <mat-sidenav #sidenav class="sidenav" position="end">
+    <mat-sidenav-container class="sidenav-container" [hasBackdrop]="false">
+        <mat-sidenav #sidenav class="sidenav" position="end" [opened]="(state$ | async) === sideNavStates.Open">
             <section class="sidenav-main-section">
                 <app-authorization-container></app-authorization-container>
             </section>
