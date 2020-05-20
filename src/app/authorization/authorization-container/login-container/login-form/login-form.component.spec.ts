@@ -1,25 +1,31 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LoginFormComponent} from './login-form.component';
-import {MaterialModule} from '../../../../shared/material.module';
-import {RegisterContainerComponent} from '../../register-container/register-container.component';
+import {LoginFormPresenterService} from './login-form-presenter.service';
+import {NO_ERRORS_SCHEMA} from '@angular/compiler';
 import {ChangeDetectionStrategy} from '@angular/core';
-import {MockComponent} from '../../../../../tests/jest-global-mocks';
 
 describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
     let fixture: ComponentFixture<LoginFormComponent>;
 
     beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [MaterialModule],
-            declarations: [
-                LoginFormComponent,
-                MockComponent('mat-form-field'),
-                MockComponent('mat-label'),
-            ]
-        })
-            .overrideComponent(RegisterContainerComponent, {
+        TestBed
+            .configureTestingModule({
+                declarations: [
+                    LoginFormComponent,
+                ],
+                schemas: [NO_ERRORS_SCHEMA],
+                providers: [
+                    {
+                        provide: LoginFormPresenterService, useValue: {
+                            getLoginForm() {
+                            }
+                        }
+                    },
+                ]
+            })
+            .overrideComponent(LoginFormComponent, {
                 set: {changeDetection: ChangeDetectionStrategy.Default},
             })
             .compileComponents();
@@ -34,4 +40,12 @@ describe('LoginFormComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+
+    it('should emit login form data', () => {
+        spyOn(component.loginDataEvent, 'emit');
+        component.loginForm = {} as any;
+        component.onLoginFormSubmit();
+        expect(component.loginDataEvent.emit).toHaveBeenCalled();
+    });
+
 });

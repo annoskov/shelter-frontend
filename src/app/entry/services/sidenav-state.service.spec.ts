@@ -1,21 +1,36 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SidenavStateService } from './sidenav-state.service';
-import {ElementScrollPercentageService} from '../../../services/element-scroll-percentage.service';
+import {SideNavStates, SidenavStateService} from './sidenav-state.service';
 import {NgZone} from '@angular/core';
+import {destroyMock$} from '../../../tests/jest-global-mocks';
 
 describe('SidenavStateService', () => {
-  let service: SidenavStateService;
+    let service: SidenavStateService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = new SidenavStateService(
-        new NgZone({}),
-        new ElementScrollPercentageService(),
-    );
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({});
+        service = new SidenavStateService(
+            new NgZone({})
+        );
+    });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
+
+    describe('methods', () => {
+        it('should return sidenav state', (done: any) => {
+            const contextMock: any = {
+                sidenav: {
+                    get opened() {
+                        return true;
+                    }
+                }
+            };
+            service.listenScroll(contextMock, destroyMock$).subscribe((value: SideNavStates) => {
+                expect(value).toBeDefined();
+                done();
+            });
+        });
+    });
 });

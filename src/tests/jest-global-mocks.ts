@@ -21,6 +21,7 @@ import 'jest-preset-angular';
 // ...
 
 import { Component, Directive, EventEmitter, Pipe, PipeTransform, Type } from '@angular/core';
+import {Subject} from 'rxjs';
 
 Error.stackTraceLimit = 2;
 
@@ -66,6 +67,11 @@ Object.defineProperty(document.body.style, 'transform', {
         };
     }
 });
+
+/**
+ * Destroy subject mock
+ */
+export const destroyMock$: Subject<boolean> = new Subject<boolean>();
 
 /**
  * Examples:
