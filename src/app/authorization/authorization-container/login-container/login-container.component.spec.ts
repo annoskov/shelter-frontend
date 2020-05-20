@@ -72,12 +72,6 @@ describe('LoginComponent', () => {
         });
         // @ts-ignore
         expect(component.authenticationService.login).toHaveBeenCalled();
-        // // @ts-ignore
-        // expect(component.authenticationService.login).toHaveProperty('email');
-        // // @ts-ignore
-        // expect(component.authenticationService.login).toHaveProperty('password');
-        // // @ts-ignore
-        // expect(component.authenticationService.login).toHaveProperty('remember');
     });
 
 });

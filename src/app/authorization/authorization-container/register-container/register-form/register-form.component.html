@@ -4,11 +4,11 @@
         <small>or <a class="link" [tabindex]="0">login</a></small>
     </div>
     <form [formGroup]="registerForm" novalidate (submit)="onRegisterFormSubmit()">
-        <mat-form-field class="firstname-form-field">
+        <mat-form-field class="firstName-form-field">
             <mat-label>First Name</mat-label>
             <input formControlName="firstName" matInput>
         </mat-form-field>
-        <mat-form-field class="lastname-form-field">
+        <mat-form-field class="lastName-form-field">
             <mat-label>Last Name</mat-label>
             <input formControlName="lastName" matInput>
         </mat-form-field>
@@ -18,7 +18,7 @@
         </mat-form-field>
         <mat-form-field class="password-form-field">
             <mat-label>Password</mat-label>
-            <input formControlName="password" matInput>
+            <input formControlName="password" type="password" matInput>
         </mat-form-field>
         <div class="btn-block">
             <button class="register-button" mat-flat-button color="primary">Register</button>
