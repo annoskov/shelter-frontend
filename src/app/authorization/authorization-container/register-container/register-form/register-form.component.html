@@ -1,7 +1,7 @@
 <div class="register-form-wrapper">
     <div class="register-header-block">
         <h1 class="register-form-title">Register</h1>
-        <small>or <a class="link" [tabindex]="0">login</a></small>
+        <small>or <a class="link" [tabindex]="0" (click)="switchToRegisterForm()">login</a></small>
     </div>
     <form [formGroup]="registerForm" novalidate (submit)="onRegisterFormSubmit()">
         <mat-form-field class="firstName-form-field">

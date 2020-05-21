@@ -1,3 +1,5 @@
 <div class="register-container">
-  <app-register-form (registerDataEvent)="onRegisterEvent($event)"></app-register-form>
+    <app-register-form (registerDataEvent)="onRegisterEvent($event)"
+                       (switchToLoginFormEvent)="switchToLoginForm($event)">
+    </app-register-form>
 </div>

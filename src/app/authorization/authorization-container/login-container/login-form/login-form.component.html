@@ -1,7 +1,7 @@
 <div class="login-form-wrapper">
     <div class="login-header-block">
         <h1 class="login-form-title">Enter</h1>
-        <small>or <a class="link" [tabindex]="0">create account</a></small>
+        <small>or <a class="link" [tabindex]="0" (click)="switchToRegisterForm()">create account</a></small>
     </div>
     <form [formGroup]="loginForm" novalidate (submit)="onLoginFormSubmit()">
         <mat-form-field class="email-form-field">

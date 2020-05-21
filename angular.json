@@ -111,6 +111,7 @@
   },
   "defaultProject": "flash-cards",
   "cli": {
-    "analytics": false
+    "defaultCollection": "@ngrx/schematics",
+    "analytics": "afebefb4-96d3-40b5-a806-ad364c8504dc"
   }
 }

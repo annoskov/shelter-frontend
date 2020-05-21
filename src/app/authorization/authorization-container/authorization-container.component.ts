@@ -1,6 +1,10 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {AuthorizationHeaderModes} from './authorization-header/authorization-header.types';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {AuthorizationState} from '../../../core-data/state/feature-states/authoriazation/authorization.reducer';
+import {selectAuthorizationMode} from '../../../core-data/state/feature-states/authoriazation/authorization.selectors';
+import {ChangeMode} from '../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 @Component({
     selector: 'app-authorization-container',
@@ -10,21 +14,20 @@ import {BehaviorSubject, Observable} from 'rxjs';
 })
 export class AuthorizationContainerComponent implements OnInit {
 
-    private mode: BehaviorSubject<AuthorizationHeaderModes> = new BehaviorSubject<AuthorizationHeaderModes>(AuthorizationHeaderModes.Login);
-    mode$: Observable<AuthorizationHeaderModes> = this.mode.asObservable();
-
+    mode$: Observable<AuthorizationHeaderModes> = this.store.pipe(select(selectAuthorizationMode));
     authorizationHeaderModes = AuthorizationHeaderModes;
 
-    constructor() {
+    constructor(private store: Store<AuthorizationState>) {
     }
 
     ngOnInit(): void {
     }
 
-    toggleMode() {
-        this.mode.getValue() === AuthorizationHeaderModes.Login ?
-            (this.mode.next(AuthorizationHeaderModes.Register)) :
-            (this.mode.next(AuthorizationHeaderModes.Login));
+    changeMode(currentMode: AuthorizationHeaderModes) {
+        const newMode: AuthorizationHeaderModes = currentMode === AuthorizationHeaderModes.Login ?
+            AuthorizationHeaderModes.Register :
+            AuthorizationHeaderModes.Login;
+        this.store.dispatch(new ChangeMode(newMode));
     }
 
 }

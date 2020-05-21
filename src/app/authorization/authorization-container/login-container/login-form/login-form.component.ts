@@ -2,6 +2,7 @@ import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '
 import {FormGroup} from '@angular/forms';
 import {LoginFormPresenterService} from './login-form-presenter.service';
 import {ILoginData} from './types/login-form.interfaces';
+import {AuthorizationHeaderModes} from '../../authorization-header/authorization-header.types';
 
 @Component({
     selector: 'app-login-form',
@@ -12,6 +13,7 @@ import {ILoginData} from './types/login-form.interfaces';
 export class LoginFormComponent implements OnInit {
 
     @Output() loginDataEvent: EventEmitter<ILoginData> = new EventEmitter<ILoginData>();
+    @Output() switchToRegisterFormEvent: EventEmitter<AuthorizationHeaderModes> = new EventEmitter<AuthorizationHeaderModes>();
 
     loginForm: FormGroup;
 
@@ -20,6 +22,10 @@ export class LoginFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.loginForm = this.loginFormPresenterService.getLoginForm();
+    }
+
+    switchToRegisterForm() {
+        this.switchToRegisterFormEvent.emit(AuthorizationHeaderModes.Register);
     }
 
     onLoginFormSubmit() {
