@@ -10,10 +10,8 @@ export class AuthenticationService {
     }
 
     login(loginData: ILoginData) {
-        console.log('loginData:', loginData);
     }
 
     register(registerData: IRegisterData) {
-        console.log('registerData:', registerData);
     }
 }
