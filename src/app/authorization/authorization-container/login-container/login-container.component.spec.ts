@@ -7,6 +7,9 @@ import {AuthenticationService} from '../../../core/authentication/authentication
 import {By} from '@angular/platform-browser';
 import {ILoginData} from './login-form/types/login-form.interfaces';
 import {IRegisterData} from '../register-container/register-form/types/register-form.interfaces';
+import {AuthorizationHeaderModes} from '../authorization-header/authorization-header.types';
+import {MockStore, provideMockStore} from '@ngrx/store/testing';
+import {ChangeMode} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 class AuthenticationServiceMock {
     login(loginData: ILoginData) {
@@ -21,6 +24,12 @@ describe('LoginComponent', () => {
     let component: LoginContainerComponent;
     let fixture: ComponentFixture<LoginContainerComponent>;
     let de: DebugElement;
+    let store: MockStore;
+    const initialState = {
+        authorization: {
+            selectedMode: AuthorizationHeaderModes.Login
+        }
+    };
 
     beforeEach(async(() => {
         TestBed
@@ -31,13 +40,16 @@ describe('LoginComponent', () => {
                     {
                         provide: AuthenticationService,
                         useClass: AuthenticationServiceMock,
-                    }
+                    },
+                    provideMockStore({initialState}),
                 ]
             })
             .overrideComponent(LoginContainerComponent, {
                 set: {changeDetection: ChangeDetectionStrategy.Default},
             })
             .compileComponents();
+
+        store = TestBed.inject(MockStore);
     }));
 
     beforeEach(() => {
@@ -72,6 +84,13 @@ describe('LoginComponent', () => {
         });
         // @ts-ignore
         expect(component.authenticationService.login).toHaveBeenCalled();
+    });
+
+    it('should dispatch ChangeMode action', () => {
+        const expectedAction = new ChangeMode(AuthorizationHeaderModes.Register);
+        spyOn(store, 'dispatch');
+        component.switchToRegisterForm(AuthorizationHeaderModes.Register);
+        expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
     });
 
 });

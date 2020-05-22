@@ -6,25 +6,42 @@ import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {AuthorizationHeaderModes} from './authorization-header/authorization-header.types';
 import {TestScheduler} from 'rxjs/testing';
+import {MockStore, provideMockStore} from '@ngrx/store/testing';
+import {select} from '@ngrx/store';
+import {selectAuthorizationMode} from '../../../core-data/state/feature-states/authoriazation/authorization.selectors';
+import {ChangeMode} from '../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 describe('AuthorizationContainerComponent', () => {
     let component: AuthorizationContainerComponent;
     let fixture: ComponentFixture<AuthorizationContainerComponent>;
     let de: DebugElement;
     let scheduler: TestScheduler;
+    const initialState = {
+        authorization: {
+            selectedMode: AuthorizationHeaderModes.Login
+        }
+    };
+    let store: MockStore;
 
     beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [AuthorizationContainerComponent],
-            schemas: [NO_ERRORS_SCHEMA],
-        })
+        TestBed
+            .configureTestingModule({
+                declarations: [AuthorizationContainerComponent],
+                schemas: [NO_ERRORS_SCHEMA],
+                providers: [
+                    provideMockStore({initialState}),
+                ]
+            })
             .compileComponents();
+
+        store = TestBed.inject(MockStore);
     }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AuthorizationContainerComponent);
-        component = fixture.componentInstance;
         de = fixture.debugElement;
+        component = fixture.componentInstance;
+        component.mode$ = store.pipe(select(selectAuthorizationMode));
         fixture.detectChanges();
     });
 
@@ -38,24 +55,18 @@ describe('AuthorizationContainerComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('authorization header should call toggle method', () => {
+    it('authorization header should call "changeMode" method', () => {
         const authorizationHeaderComponent: DebugElement = de.query(By.css('app-authorization-header'));
-        spyOn(component, 'toggleMode');
+        spyOn(component, 'changeMode');
         authorizationHeaderComponent.triggerEventHandler('toggleModeEvent', null);
-        expect(component.toggleMode).toHaveBeenCalled();
+        expect(component.changeMode).toHaveBeenCalled();
     });
 
-    it('should toggle authorization header mode', () => {
-        const marble = '(a)';
-        const mode$ = component.mode$;
-        scheduler.run(({expectObservable}) => {
-            const initialExpectedMode = {a: AuthorizationHeaderModes.Login};
-            expectObservable(mode$).toBe(marble, initialExpectedMode);
-        });
-        component.toggleMode();
-        scheduler.run(({expectObservable}) => {
-            const newExpectedMode = {a: AuthorizationHeaderModes.Register};
-            expectObservable(mode$).toBe(marble, newExpectedMode);
-        });
+    it('should dispatch ChangeMode action', () => {
+        const expectedAction = new ChangeMode(AuthorizationHeaderModes.Login);
+        spyOn(store, 'dispatch');
+        component.changeMode(AuthorizationHeaderModes.Register);
+        expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
     });
+
 });

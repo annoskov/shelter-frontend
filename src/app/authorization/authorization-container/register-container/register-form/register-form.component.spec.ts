@@ -5,6 +5,7 @@ import {RegisterFormPresenterService} from './register-form-presenter.service';
 import {NO_ERRORS_SCHEMA} from '@angular/compiler';
 import {ChangeDetectionStrategy, DebugElement} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {AuthorizationHeaderModes} from '../../authorization-header/authorization-header.types';
 
 describe('RegisterFormComponent', () => {
     let component: RegisterFormComponent;
@@ -84,6 +85,12 @@ describe('RegisterFormComponent', () => {
         component.registerForm = {} as any;
         component.onRegisterFormSubmit();
         expect(component.registerDataEvent.emit).toHaveBeenCalled();
+    });
+
+    it('should emit switchToRegisterFormEvent', () => {
+        spyOn(component.switchToLoginFormEvent, 'emit');
+        component.switchToLoginForm();
+        expect(component.switchToLoginFormEvent.emit).toHaveBeenCalledWith(AuthorizationHeaderModes.Login);
     });
 
 });

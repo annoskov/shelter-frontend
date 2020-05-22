@@ -5,11 +5,20 @@ import {ChangeDetectionStrategy, DebugElement} from '@angular/core';
 import {NO_ERRORS_SCHEMA} from '@angular/compiler';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {By} from '@angular/platform-browser';
+import {ChangeMode} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
+import {AuthorizationHeaderModes} from '../authorization-header/authorization-header.types';
+import {MockStore, provideMockStore} from '@ngrx/store/testing';
 
 describe('RegisterContainerComponent', () => {
     let component: RegisterContainerComponent;
     let fixture: ComponentFixture<RegisterContainerComponent>;
     let de: DebugElement;
+    let store: MockStore;
+    const initialState = {
+        authorization: {
+            selectedMode: AuthorizationHeaderModes.Login
+        }
+    };
 
     beforeEach(async(() => {
         TestBed
@@ -25,13 +34,16 @@ describe('RegisterContainerComponent', () => {
                             register() {
                             },
                         }
-                    }
+                    },
+                    provideMockStore({initialState})
                 ]
             })
             .overrideComponent(RegisterContainerComponent, {
                 set: {changeDetection: ChangeDetectionStrategy.Default},
             })
             .compileComponents();
+
+        store = TestBed.inject(MockStore);
     }));
 
     beforeEach(() => {
@@ -68,6 +80,13 @@ describe('RegisterContainerComponent', () => {
         });
         // @ts-ignore
         expect(component.authenticationService.register).toHaveBeenCalled();
+    });
+
+    it('should dispatch ChangeMode action', () => {
+        const expectedAction = new ChangeMode(AuthorizationHeaderModes.Register);
+        spyOn(store, 'dispatch');
+        component.switchToLoginForm(AuthorizationHeaderModes.Register);
+        expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
     });
 
 });

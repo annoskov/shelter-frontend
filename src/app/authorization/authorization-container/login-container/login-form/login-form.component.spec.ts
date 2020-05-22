@@ -6,6 +6,7 @@ import {ChangeDetectionStrategy, DebugElement} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../../../shared/material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthorizationHeaderModes} from '../../authorization-header/authorization-header.types';
 
 describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
@@ -86,6 +87,12 @@ describe('LoginFormComponent', () => {
         component.loginForm = {} as any;
         component.onLoginFormSubmit();
         expect(component.loginDataEvent.emit).toHaveBeenCalled();
+    });
+
+    it('should emit switchToRegisterFormEvent', () => {
+        spyOn(component.switchToRegisterFormEvent, 'emit');
+        component.switchToRegisterForm();
+        expect(component.switchToRegisterFormEvent.emit).toHaveBeenCalledWith(AuthorizationHeaderModes.Register);
     });
 
 });

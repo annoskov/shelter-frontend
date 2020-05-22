@@ -24,7 +24,7 @@ export class RegisterFormComponent implements OnInit {
         this.registerForm = this.registerFormPresenterService.getRegisterForm();
     }
 
-    switchToRegisterForm() {
+    switchToLoginForm() {
         this.switchToLoginFormEvent.emit(AuthorizationHeaderModes.Login);
     }
 
