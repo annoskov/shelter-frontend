@@ -10,6 +10,8 @@ import {AuthorizationModule} from './authorization/authorization.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {EntryModule} from './entry/entry.module';
 import {StateModule} from '../core-data/state/state.module';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
 @NgModule({
     imports: [
@@ -23,6 +25,7 @@ import {StateModule} from '../core-data/state/state.module';
         EntryModule,
         AppRoutingModule,
         NoopAnimationsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     ],
     declarations: [
         AppComponent,
