@@ -58,7 +58,7 @@ describe('RegisterContainerComponent', () => {
     });
 
     it('should receive event from child component', () => {
-        const childRegisterFormComponent: DebugElement = de.query(By.css('app-register-form'));
+        const childRegisterFormComponent: DebugElement = de.query(By.css('slt-register-form'));
         spyOn(component, 'onRegisterEvent');
         childRegisterFormComponent.triggerEventHandler('registerDataEvent', {
             firstName: '',

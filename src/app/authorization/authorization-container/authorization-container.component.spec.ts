@@ -56,7 +56,7 @@ describe('AuthorizationContainerComponent', () => {
     });
 
     it('authorization header should call "changeMode" method', () => {
-        const authorizationHeaderComponent: DebugElement = de.query(By.css('app-authorization-header'));
+        const authorizationHeaderComponent: DebugElement = de.query(By.css('slt-authorization-header'));
         spyOn(component, 'changeMode');
         authorizationHeaderComponent.triggerEventHandler('toggleModeEvent', null);
         expect(component.changeMode).toHaveBeenCalled();

@@ -1,7 +1,7 @@
 import {Injectable, NgZone} from '@angular/core';
 import {BehaviorSubject, fromEvent, Subject} from 'rxjs';
 import {distinctUntilChanged, filter, map, startWith, takeUntil} from 'rxjs/operators';
-import {EntryComponent} from '../entry.component';
+import {LoginWindowComponent} from '../login-window.component';
 
 
 export enum SideNavStates {
@@ -17,7 +17,7 @@ export class SidenavStateService {
     constructor(private ngZone: NgZone) {
     }
 
-    public listenScroll(context: EntryComponent, destroyer$: Subject<boolean>) {
+    public listenScroll(context: LoginWindowComponent, destroyer$: Subject<boolean>) {
         const subj$: BehaviorSubject<SideNavStates> = new BehaviorSubject<SideNavStates>(SideNavStates.Close);
         this.ngZone.runOutsideAngular(() => {
             fromEvent(window, 'scroll')

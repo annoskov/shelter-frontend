@@ -1,23 +1,23 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ContentComponent} from './content.component';
+import {ContentContainerComponent} from './content-container.component';
 import {NO_ERRORS_SCHEMA} from '@angular/compiler';
 
 describe('ContentComponent', () => {
-    let component: ContentComponent;
-    let fixture: ComponentFixture<ContentComponent>;
+    let component: ContentContainerComponent;
+    let fixture: ComponentFixture<ContentContainerComponent>;
 
     beforeEach(async(() => {
         TestBed
             .configureTestingModule({
-                declarations: [ContentComponent],
+                declarations: [ContentContainerComponent],
                 schemas: [NO_ERRORS_SCHEMA],
             })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ContentComponent);
+        fixture = TestBed.createComponent(ContentContainerComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

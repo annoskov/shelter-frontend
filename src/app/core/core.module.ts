@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EntryComponent } from './entry/entry.component';
+import { EntryShellComponent } from '../shell/entry-shell/entry-shell.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { ContentComponent } from './shell/content/content.component';
-import { ShellComponent } from './shell/shell.component';
+import { ContentContainerComponent } from '../shell/shell/content-container/content-container.component';
+import { ShellComponent } from '../shell/shell/shell.component';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { AuthenticationService } from './authentication/authentication.service';
 
 @NgModule({
   declarations: [
-    EntryComponent,
+    EntryShellComponent,
     ShellComponent,
-    ContentComponent,
+    ContentContainerComponent,
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@ import {Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output}
 import {AuthorizationHeaderModes} from './authorization-header.types';
 
 @Component({
-    selector: 'app-authorization-header',
+    selector: 'slt-authorization-header',
     templateUrl: './authorization-header.component.html',
     styleUrls: ['./authorization-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

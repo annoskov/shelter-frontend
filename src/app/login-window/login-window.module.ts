@@ -1,20 +1,20 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {EntryComponent} from './entry.component';
+import {LoginWindowComponent} from './login-window.component';
 import {MaterialModule} from '../shared/material.module';
 import {LandingComponent} from './landing/landing.component';
-import {EntryRoutingModule} from './entry-routing.module';
+import {LoginWindowRoutingModule} from './login-window-routing.module';
 import {AuthorizationModule} from '../authorization/authorization.module';
 
 
 @NgModule({
-    declarations: [EntryComponent, LandingComponent],
+    declarations: [LoginWindowComponent, LandingComponent],
     imports: [
         CommonModule,
         MaterialModule,
-        EntryRoutingModule,
+        LoginWindowRoutingModule,
         AuthorizationModule,
     ]
 })
-export class EntryModule {
+export class LoginWindowModule {
 }

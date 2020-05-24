@@ -6,6 +6,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppEffects} from './effects/app.effects';
 import {metaReducers, reducers} from './reducers';
 import {environment} from '../../environments/environment';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {environment} from '../../environments/environment';
                 strictActionImmutability: true,
             }
         }),
+        StoreRouterConnectingModule.forRoot(),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
     ],
 })

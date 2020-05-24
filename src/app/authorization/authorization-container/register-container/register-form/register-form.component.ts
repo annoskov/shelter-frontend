@@ -5,7 +5,7 @@ import {IRegisterData} from './types/register-form.interfaces';
 import {AuthorizationHeaderModes} from '../../authorization-header/authorization-header.types';
 
 @Component({
-    selector: 'app-register-form',
+    selector: 'slt-register-form',
     templateUrl: './register-form.component.html',
     styleUrls: ['./register-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

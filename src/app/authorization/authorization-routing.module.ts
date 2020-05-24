@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {Route} from '../core/services/route.service';
-import {RegisterContainerComponent} from './authorization-container/register-container/register-container.component';
-import {LoginContainerComponent} from './authorization-container/login-container/login-container.component';
-import {LandingComponent} from '../entry/landing/landing.component';
+import {LandingComponent} from '../login-window/landing/landing.component';
 
 const routes: Routes = [
     Route.withEntryShell([
@@ -12,16 +10,6 @@ const routes: Routes = [
             component: LandingComponent,
             data: {title: 'Shelter - Shelter Register'}
         },
-        // {
-        //   path: 'register',
-        //   component: RegisterContainerComponent,
-        //   data: {title: 'Shelter - Shelter Register'}
-        // },
-        // {
-        //   path: 'login',
-        //   component: LoginContainerComponent,
-        //   data: {title: 'Shelter - Shelter Login'}
-        // }
     ])
 ];
 

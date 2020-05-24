@@ -5,7 +5,7 @@ import {ILoginData} from './types/login-form.interfaces';
 import {AuthorizationHeaderModes} from '../../authorization-header/authorization-header.types';
 
 @Component({
-    selector: 'app-login-form',
+    selector: 'slt-login-form',
     templateUrl: './login-form.component.html',
     styleUrls: ['./login-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

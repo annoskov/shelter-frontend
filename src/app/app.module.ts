@@ -8,7 +8,7 @@ import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
 import {AuthorizationModule} from './authorization/authorization.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {EntryModule} from './entry/entry.module';
+import {LoginWindowModule} from './login-window/login-window.module';
 import {StateModule} from '../core-data/state/state.module';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
@@ -22,7 +22,7 @@ import {environment} from '../environments/environment';
         SharedModule,
         DashboardModule,
         AuthorizationModule,
-        EntryModule,
+        LoginWindowModule,
         AppRoutingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),

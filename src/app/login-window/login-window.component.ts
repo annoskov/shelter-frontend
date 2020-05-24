@@ -4,24 +4,22 @@ import {
     ChangeDetectionStrategy,
     ViewChild,
     AfterViewInit,
-    NgZone,
     OnDestroy,
-    ElementRef, ChangeDetectorRef
+    ElementRef
 } from '@angular/core';
 import {MatSidenav} from '@angular/material/sidenav';
 import {Observable, Subject} from 'rxjs';
 import {SideNavStates, SidenavStateService} from './services/sidenav-state.service';
-import {tap} from 'rxjs/operators';
 
 @Component({
-    selector: 'app-entry',
-    templateUrl: './entry.component.html',
-    styleUrls: ['./entry.component.scss'],
+    selector: 'slt-login-window',
+    templateUrl: './login-window.component.html',
+    styleUrls: ['./login-window.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EntryComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LoginWindowComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    state$: Observable<SideNavStates> = new Observable<SideNavStates>();
+    sidenavState$: Observable<SideNavStates> = new Observable<SideNavStates>();
     destroy$: Subject<boolean> = new Subject<boolean>();
     sideNavStates = SideNavStates;
 
@@ -35,7 +33,7 @@ export class EntryComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        this.state$ = this.sidenavStateService.listenScroll(this, this.destroy$);
+        this.sidenavState$ = this.sidenavStateService.listenScroll(this, this.destroy$);
     }
 
     ngOnDestroy() {

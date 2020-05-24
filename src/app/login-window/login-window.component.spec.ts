@@ -1,22 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {EntryComponent} from './entry.component';
+import {LoginWindowComponent} from './login-window.component';
 import {NO_ERRORS_SCHEMA} from '@angular/compiler';
 
 describe('EntryComponent', () => {
-    let component: EntryComponent;
-    let fixture: ComponentFixture<EntryComponent>;
+    let component: LoginWindowComponent;
+    let fixture: ComponentFixture<LoginWindowComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EntryComponent],
+            declarations: [LoginWindowComponent],
             schemas: [NO_ERRORS_SCHEMA],
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EntryComponent);
+        fixture = TestBed.createComponent(LoginWindowComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

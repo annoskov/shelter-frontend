@@ -1,12 +1,12 @@
 <div #entryContainer class="entry-container">
     <mat-sidenav-container class="sidenav-container" [hasBackdrop]="false">
-        <mat-sidenav #sidenav class="sidenav" position="end" [opened]="(state$ | async) === sideNavStates.Open">
+        <mat-sidenav #sidenav class="sidenav" position="end" [opened]="(sidenavState$ | async) === sideNavStates.Open">
             <section class="sidenav-main-section">
-                <app-authorization-container></app-authorization-container>
+                <slt-authorization-container></slt-authorization-container>
             </section>
         </mat-sidenav>
         <mat-sidenav-content>
-            <app-landing></app-landing>
+            <slt-landing></slt-landing>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

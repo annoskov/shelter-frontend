@@ -7,7 +7,7 @@ import {ChangeMode} from '../../../../core-data/state/feature-states/authoriazat
 import {AuthorizationHeaderModes} from '../authorization-header/authorization-header.types';
 
 @Component({
-    selector: 'app-login-container',
+    selector: 'slt-login-container',
     templateUrl: './login-container.component.html',
     styleUrls: ['./login-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

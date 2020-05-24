@@ -7,7 +7,7 @@ import {AuthorizationState} from '../../../../core-data/state/feature-states/aut
 import {ChangeMode} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 @Component({
-    selector: 'app-register-container',
+    selector: 'slt-register-container',
     templateUrl: './register-container.component.html',
     styleUrls: ['./register-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

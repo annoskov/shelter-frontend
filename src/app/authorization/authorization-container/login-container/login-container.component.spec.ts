@@ -64,7 +64,7 @@ describe('LoginComponent', () => {
     });
 
     it('should receive event from child component', () => {
-        const childLoginFormComponent: DebugElement = de.query(By.css('app-login-form'));
+        const childLoginFormComponent: DebugElement = de.query(By.css('slt-login-form'));
         spyOn(component, 'onLoginEvent');
         childLoginFormComponent.triggerEventHandler('loginDataEvent', {
             email: '',

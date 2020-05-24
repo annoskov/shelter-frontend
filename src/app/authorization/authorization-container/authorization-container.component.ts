@@ -7,7 +7,7 @@ import {selectAuthorizationMode} from '../../../core-data/state/feature-states/a
 import {ChangeMode} from '../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 @Component({
-    selector: 'app-authorization-container',
+    selector: 'slt-authorization-container',
     templateUrl: './authorization-container.component.html',
     styleUrls: ['./authorization-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {Route} from '../core/services/route.service';
-import {EntryComponent} from './entry.component';
+import {LoginWindowComponent} from './login-window.component';
 
 const routes: Routes = [
     Route.withEntryShell([
         {
             path: 'entry',
-            component: EntryComponent,
+            component: LoginWindowComponent,
             data: {title: 'Shelter'}
         },
     ])
@@ -17,5 +17,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class EntryRoutingModule {
+export class LoginWindowRoutingModule {
 }
