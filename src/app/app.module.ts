@@ -23,9 +23,9 @@ import {environment} from '../environments/environment';
         DashboardModule,
         AuthorizationModule,
         LoginWindowModule,
-        AppRoutingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+        AppRoutingModule,
     ],
     declarations: [
         AppComponent,

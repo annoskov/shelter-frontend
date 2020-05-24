@@ -1,18 +1,31 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
-import { CoreModule } from '../core/core.module';
-import { SharedModule } from '../shared/shared.module';
+import {DashboardRoutingModule} from './dashboard-routing.module';
+import {DashboardComponent} from './dashboard.component';
+import {CoreModule} from '../core/core.module';
+import {SharedModule} from '../shared/shared.module';
+import {DashboardLeftMenuComponent} from './dashboard-left-menu/dashboard-left-menu.component';
+import {DashboardRightMenuComponent} from './dashboard-right-menu/dashboard-right-menu.component';
+import {DashboardHeaderComponent} from './dashboard-header/dashboard-header.component';
+import {DashboardRightMenuFooterComponent} from './dashboard-right-menu/dashboard-right-menu-footer/dashboard-right-menu-footer.component';
+import {DashboardLeftMenuFooterComponent} from './dashboard-left-menu/dashboard-left-menu-footer/dashboard-left-menu-footer.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
-  imports: [
-    CommonModule,
-    CoreModule,
-    SharedModule,
-    DashboardRoutingModule
-  ]
+    declarations: [
+        DashboardComponent,
+        DashboardLeftMenuComponent,
+        DashboardRightMenuComponent,
+        DashboardHeaderComponent,
+        DashboardRightMenuFooterComponent,
+        DashboardLeftMenuFooterComponent
+    ],
+    imports: [
+        CommonModule,
+        CoreModule,
+        SharedModule,
+        DashboardRoutingModule
+    ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}
