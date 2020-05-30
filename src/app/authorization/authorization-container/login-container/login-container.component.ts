@@ -3,7 +3,7 @@ import {ILoginData} from './login-form/types/login-form.interfaces';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {Store} from '@ngrx/store';
 import {AuthorizationState} from '../../../../core-data/state/feature-states/authoriazation/authorization.reducer';
-import {ChangeMode} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
+import {ChangeModeAction, LoginAction} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
 import {AuthorizationHeaderModes} from '../authorization-header/authorization-header.types';
 
 @Component({
@@ -22,11 +22,12 @@ export class LoginContainerComponent implements OnInit {
     }
 
     onLoginEvent(loginData: ILoginData) {
-        this.authenticationService.login(loginData);
+        this.store.dispatch(new LoginAction(loginData));
+        // this.authenticationService.login(loginData);
     }
 
     switchToRegisterForm(mode: AuthorizationHeaderModes) {
-        this.store.dispatch(new ChangeMode(mode));
+        this.store.dispatch(new ChangeModeAction(mode));
     }
 
 }

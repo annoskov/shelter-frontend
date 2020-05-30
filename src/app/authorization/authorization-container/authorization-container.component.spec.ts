@@ -9,7 +9,7 @@ import {TestScheduler} from 'rxjs/testing';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {select} from '@ngrx/store';
 import {selectAuthorizationMode} from '../../../core-data/state/feature-states/authoriazation/authorization.selectors';
-import {ChangeMode} from '../../../core-data/state/feature-states/authoriazation/authorization.actions';
+import {ChangeModeAction} from '../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 describe('AuthorizationContainerComponent', () => {
     let component: AuthorizationContainerComponent;
@@ -63,7 +63,7 @@ describe('AuthorizationContainerComponent', () => {
     });
 
     it('should dispatch ChangeMode action', () => {
-        const expectedAction = new ChangeMode(AuthorizationHeaderModes.Login);
+        const expectedAction = new ChangeModeAction(AuthorizationHeaderModes.Login);
         spyOn(store, 'dispatch');
         component.changeMode(AuthorizationHeaderModes.Register);
         expect(store.dispatch).toHaveBeenCalledWith(expectedAction);

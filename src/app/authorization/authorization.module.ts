@@ -11,6 +11,8 @@ import {RegisterContainerComponent} from './authorization-container/register-con
 import {MaterialModule} from '../shared/material.module';
 import {LoginFormComponent} from './authorization-container/login-container/login-form/login-form.component';
 import {RegisterFormComponent} from './authorization-container/register-container/register-form/register-form.component';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthorizationEffects} from '../../core-data/state/feature-states/authoriazation/authorization.effects';
 
 @NgModule({
     declarations: [
@@ -24,6 +26,7 @@ import {RegisterFormComponent} from './authorization-container/register-containe
     ],
     imports: [
         CommonModule,
+        EffectsModule.forFeature([AuthorizationEffects]),
         ReactiveFormsModule,
         CoreModule,
         SharedModule,

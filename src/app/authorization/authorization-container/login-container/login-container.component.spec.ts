@@ -9,7 +9,7 @@ import {ILoginData} from './login-form/types/login-form.interfaces';
 import {IRegisterData} from '../register-container/register-form/types/register-form.interfaces';
 import {AuthorizationHeaderModes} from '../authorization-header/authorization-header.types';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
-import {ChangeMode} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
+import {ChangeModeAction} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 class AuthenticationServiceMock {
     login(loginData: ILoginData) {
@@ -87,7 +87,7 @@ describe('LoginComponent', () => {
     });
 
     it('should dispatch ChangeMode action', () => {
-        const expectedAction = new ChangeMode(AuthorizationHeaderModes.Register);
+        const expectedAction = new ChangeModeAction(AuthorizationHeaderModes.Register);
         spyOn(store, 'dispatch');
         component.switchToRegisterForm(AuthorizationHeaderModes.Register);
         expect(store.dispatch).toHaveBeenCalledWith(expectedAction);

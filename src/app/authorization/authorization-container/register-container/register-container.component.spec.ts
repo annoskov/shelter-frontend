@@ -5,7 +5,7 @@ import {ChangeDetectionStrategy, DebugElement} from '@angular/core';
 import {NO_ERRORS_SCHEMA} from '@angular/compiler';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {By} from '@angular/platform-browser';
-import {ChangeMode} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
+import {ChangeModeAction} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
 import {AuthorizationHeaderModes} from '../authorization-header/authorization-header.types';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 
@@ -83,7 +83,7 @@ describe('RegisterContainerComponent', () => {
     });
 
     it('should dispatch ChangeMode action', () => {
-        const expectedAction = new ChangeMode(AuthorizationHeaderModes.Register);
+        const expectedAction = new ChangeModeAction(AuthorizationHeaderModes.Register);
         spyOn(store, 'dispatch');
         component.switchToLoginForm(AuthorizationHeaderModes.Register);
         expect(store.dispatch).toHaveBeenCalledWith(expectedAction);

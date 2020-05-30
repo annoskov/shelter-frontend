@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {AuthorizationState} from '../../../core-data/state/feature-states/authoriazation/authorization.reducer';
 import {selectAuthorizationMode} from '../../../core-data/state/feature-states/authoriazation/authorization.selectors';
-import {ChangeMode} from '../../../core-data/state/feature-states/authoriazation/authorization.actions';
+import {ChangeModeAction} from '../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 @Component({
     selector: 'slt-authorization-container',
@@ -27,7 +27,7 @@ export class AuthorizationContainerComponent implements OnInit {
         const newMode: AuthorizationHeaderModes = currentMode === AuthorizationHeaderModes.Login ?
             AuthorizationHeaderModes.Register :
             AuthorizationHeaderModes.Login;
-        this.store.dispatch(new ChangeMode(newMode));
+        this.store.dispatch(new ChangeModeAction(newMode));
     }
 
 }

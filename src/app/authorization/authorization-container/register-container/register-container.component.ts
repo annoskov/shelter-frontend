@@ -4,7 +4,7 @@ import {IRegisterData} from './register-form/types/register-form.interfaces';
 import {AuthorizationHeaderModes} from '../authorization-header/authorization-header.types';
 import {Store} from '@ngrx/store';
 import {AuthorizationState} from '../../../../core-data/state/feature-states/authoriazation/authorization.reducer';
-import {ChangeMode} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
+import {ChangeModeAction} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
 
 @Component({
     selector: 'slt-register-container',
@@ -26,7 +26,7 @@ export class RegisterContainerComponent implements OnInit {
     }
 
     switchToLoginForm(mode: AuthorizationHeaderModes) {
-        this.store.dispatch(new ChangeMode(mode));
+        this.store.dispatch(new ChangeModeAction(mode));
     }
 
 }
