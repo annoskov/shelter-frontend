@@ -13,7 +13,7 @@ export class AuthenticationService {
     }
 
     login(loginData: ILoginData) {
-        const url = `http://localhost:3000/${this.AUTH_BASE_URL}/login`;
+        const url = `${this.AUTH_BASE_URL}/login`;
         return this.httpClient.post(url, loginData);
     }
 

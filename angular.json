@@ -70,7 +70,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "flash-cards:build"
+            "browserTarget": "flash-cards:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
