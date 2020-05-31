@@ -2,6 +2,7 @@ import {Action} from '@ngrx/store';
 import {AuthorizationHeaderModes} from '../../../../app/authorization/authorization-container/authorization-header/authorization-header.types';
 import {ILoginData} from '../../../../app/authorization/authorization-container/login-container/login-form/types/login-form.interfaces';
 import {IRegisterData} from '../../../../app/authorization/authorization-container/register-container/register-form/types/register-form.interfaces';
+import {LoginFailureResponse, LoginSuccessResponse} from '../../../../app/core/authentication/authentication.service';
 
 export enum AuthorizationActionTypes {
     ChangeMode = '[Authorization] changed',
@@ -29,14 +30,14 @@ export class LoginAction implements Action {
 export class LoginSuccessAction implements Action {
     readonly type = AuthorizationActionTypes.LoginSuccess;
 
-    constructor(public payload: ILoginData) {
+    constructor(public payload: LoginSuccessResponse) {
     }
 }
 
 export class LoginFailureAction implements Action {
     readonly type = AuthorizationActionTypes.LoginFailure;
 
-    constructor(public payload: ILoginData) {
+    constructor(public payload: LoginFailureResponse) {
     }
 }
 
@@ -47,4 +48,9 @@ export class RegisterAction implements Action {
     }
 }
 
-export type AuthorizationActions = ChangeModeAction | LoginAction | RegisterAction;
+export type AuthorizationActions =
+    ChangeModeAction
+    | LoginAction
+    | LoginSuccessAction
+    | LoginFailureAction
+    | RegisterAction;

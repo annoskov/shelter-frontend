@@ -4,6 +4,24 @@ import {ILoginData} from '../../authorization/authorization-container/login-cont
 import {IRegisterData} from '../../authorization/authorization-container/register-container/register-form/types/register-form.interfaces';
 import {environment} from '../../../environments/environment';
 
+export interface UserData {
+    accessToken: string;
+}
+
+export interface LoginSuccessResponse {
+    isSuccess: boolean;
+    accessToken: string;
+    message?: string;
+    stackTrace?: string;
+    statusCode?: number;
+}
+
+export interface LoginFailureResponse {
+    error: string;
+    errorMessage: string;
+    statusCode: number;
+}
+
 @Injectable()
 export class AuthenticationService {
 

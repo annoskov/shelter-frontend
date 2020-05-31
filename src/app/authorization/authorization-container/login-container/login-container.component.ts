@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ILoginData} from './login-form/types/login-form.interfaces';
-import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {Store} from '@ngrx/store';
 import {AuthorizationState} from '../../../../core-data/state/feature-states/authoriazation/authorization.reducer';
 import {ChangeModeAction, LoginAction} from '../../../../core-data/state/feature-states/authoriazation/authorization.actions';
@@ -14,8 +13,7 @@ import {AuthorizationHeaderModes} from '../authorization-header/authorization-he
 })
 export class LoginContainerComponent implements OnInit {
 
-    constructor(private authenticationService: AuthenticationService,
-                private store: Store<AuthorizationState>) {
+    constructor(private store: Store<AuthorizationState>) {
     }
 
     ngOnInit() {
@@ -23,7 +21,6 @@ export class LoginContainerComponent implements OnInit {
 
     onLoginEvent(loginData: ILoginData) {
         this.store.dispatch(new LoginAction(loginData));
-        // this.authenticationService.login(loginData);
     }
 
     switchToRegisterForm(mode: AuthorizationHeaderModes) {
