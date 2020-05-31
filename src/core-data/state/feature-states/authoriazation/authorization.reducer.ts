@@ -1,18 +1,20 @@
 import {AuthorizationHeaderModes} from '../../../../app/authorization/authorization-container/authorization-header/authorization-header.types';
 import {AuthorizationActions, AuthorizationActionTypes} from './authorization.actions';
-import {UserData} from '../../../../app/core/authentication/authentication.service';
+import {LoginFailureResponse, UserData} from '../../../../app/core/authentication/authentication.service';
 
 
 export interface AuthorizationState {
     selectedMode: AuthorizationHeaderModes;
     isAuthenticated: boolean;
     userData: UserData;
+    authenticationError: LoginFailureResponse;
 }
 
 export const initialAuthorizationState: AuthorizationState = {
     selectedMode: AuthorizationHeaderModes.Login,
     isAuthenticated: false,
     userData: null,
+    authenticationError: null,
 };
 
 export const authorizationReducer = (
@@ -31,7 +33,8 @@ export const authorizationReducer = (
                 isAuthenticated: true,
                 userData: {
                     accessToken: action.payload.accessToken
-                }
+                },
+                authenticationError: null,
             };
         }
         case AuthorizationActionTypes.LoginFailure: {
@@ -39,6 +42,7 @@ export const authorizationReducer = (
                 ...state,
                 isAuthenticated: false,
                 userData: null,
+                authenticationError: action.payload,
             };
         }
         default: {

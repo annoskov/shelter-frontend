@@ -1,8 +1,9 @@
-import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {LoginFormPresenterService} from './login-form-presenter.service';
 import {ILoginData} from './types/login-form.interfaces';
 import {AuthorizationHeaderModes} from '../../authorization-header/authorization-header.types';
+import {LoginFailureResponse} from '../../../../core/authentication/authentication.service';
 
 @Component({
     selector: 'slt-login-form',
@@ -11,6 +12,8 @@ import {AuthorizationHeaderModes} from '../../authorization-header/authorization
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginFormComponent implements OnInit {
+
+    @Input() authenticationError: LoginFailureResponse;
 
     @Output() loginDataEvent: EventEmitter<ILoginData> = new EventEmitter<ILoginData>();
     @Output() switchToRegisterFormEvent: EventEmitter<AuthorizationHeaderModes> = new EventEmitter<AuthorizationHeaderModes>();

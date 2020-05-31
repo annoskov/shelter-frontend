@@ -3,6 +3,9 @@
         <h1 class="login-form-title">Enter</h1>
         <small>or <a class="link" [tabindex]="0" (click)="switchToRegisterForm()">create account</a></small>
     </div>
+    <div class="error-block" *ngIf="authenticationError">
+        {{authenticationError.errorMessage}}
+    </div>
     <form [formGroup]="loginForm" novalidate (submit)="onLoginFormSubmit()">
         <mat-form-field class="email-form-field">
             <mat-label>E-mail</mat-label>

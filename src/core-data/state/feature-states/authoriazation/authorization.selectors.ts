@@ -6,5 +6,10 @@ export const selectAuthorizationState = createFeatureSelector<fromAuthorization.
 
 export const selectAuthorizationMode = createSelector(
     selectAuthorizationState,
-    (state: AuthorizationState) => state.selectedMode
+    (state: AuthorizationState) => state.selectedMode,
+);
+
+export const selectAuthenticationErrorState = createSelector(
+    selectAuthorizationState,
+    (state: AuthorizationState) => state.authenticationError,
 );

@@ -5,10 +5,9 @@ import {AuthorizationActionTypes, LoginAction, LoginFailureAction, LoginSuccessA
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {
     AuthenticationService,
-    LoginFailureResponse,
     LoginSuccessResponse
 } from '../../../../app/core/authentication/authentication.service';
-import {Utils} from '../../../../app/shared/utils';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root',
@@ -24,21 +23,22 @@ export class AuthorizationEffects {
         switchMap((action: LoginAction) => this.authenticationService.login(action.payload)
             .pipe(
                 map((loginDataResult: LoginSuccessResponse) => new LoginSuccessAction(loginDataResult)),
-                catchError((loginFailureResponse: LoginFailureResponse) => of(new LoginFailureAction(loginFailureResponse))),
+                catchError((httpError: HttpErrorResponse) => of(new LoginFailureAction({
+                    errorObject: httpError,
+                    errorMessage: httpError.error.errorMessage,
+                    statusCode: httpError.error.statusCode,
+                }))),
             )
         ),
     ));
 
     loginSuccess$: Observable<LoginSuccessAction> = createEffect(() => this.actions$.pipe(
         ofType<LoginSuccessAction>(AuthorizationActionTypes.LoginSuccess),
-        tap((loginSuccessAction: LoginSuccessAction) => {
-            const storage: Storage = Utils.getStorage();
-            storage.setItem('access_token', loginSuccessAction.payload.accessToken);
-        })
-    ), { dispatch: false });
+        tap(this.authenticationService.saveTokenToStorage)
+    ), {dispatch: false});
 
     loginFailure$: Observable<LoginFailureAction> = createEffect(() => this.actions$.pipe(
         ofType<LoginFailureAction>(AuthorizationActionTypes.LoginFailure),
-    ), { dispatch: false });
+    ), {dispatch: false});
 
 }
