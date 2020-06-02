@@ -34,7 +34,8 @@ export class AuthorizationEffects {
 
     loginSuccess$: Observable<LoginSuccessAction> = createEffect(() => this.actions$.pipe(
         ofType<LoginSuccessAction>(AuthorizationActionTypes.LoginSuccess),
-        tap(this.authenticationService.saveTokenToStorage)
+        tap(this.authenticationService.saveTokenToStorage),
+        tap(() => this.authenticationService.navigateToDashboard()),
     ), {dispatch: false});
 
     loginFailure$: Observable<LoginFailureAction> = createEffect(() => this.actions$.pipe(

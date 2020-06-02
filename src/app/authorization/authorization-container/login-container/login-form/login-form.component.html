@@ -3,9 +3,13 @@
         <h1 class="login-form-title">Enter</h1>
         <small>or <a class="link" [tabindex]="0" (click)="switchToRegisterForm()">create account</a></small>
     </div>
-    <div class="error-block" *ngIf="authenticationError">
+    <div class="error-block server-errors" *ngIf="authenticationError">
         {{authenticationError.errorMessage}}
     </div>
+    <div class="validation-errors" *ngIf="invalidFormErrorObject$ | async as invalidFormErrorObject">
+        <div class="error-block" *ngFor="let error of invalidFormErrorObject">{{error}}</div>
+    </div>
+
     <form [formGroup]="loginForm" novalidate (submit)="onLoginFormSubmit()">
         <mat-form-field class="email-form-field">
             <mat-label>E-mail</mat-label>

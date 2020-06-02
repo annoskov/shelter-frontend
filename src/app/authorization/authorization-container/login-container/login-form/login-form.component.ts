@@ -4,6 +4,7 @@ import {LoginFormPresenterService} from './login-form-presenter.service';
 import {ILoginData} from './types/login-form.interfaces';
 import {AuthorizationHeaderModes} from '../../authorization-header/authorization-header.types';
 import {LoginFailureResponse} from '../../../../core/authentication/authentication.service';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'slt-login-form',
@@ -15,10 +16,11 @@ export class LoginFormComponent implements OnInit {
 
     @Input() authenticationError: LoginFailureResponse;
 
-    @Output() loginDataEvent: EventEmitter<ILoginData> = new EventEmitter<ILoginData>();
+    @Output() loginFormSubmitEvent: EventEmitter<ILoginData> = new EventEmitter<ILoginData>();
     @Output() switchToRegisterFormEvent: EventEmitter<AuthorizationHeaderModes> = new EventEmitter<AuthorizationHeaderModes>();
 
     loginForm: FormGroup;
+    invalidFormErrorObject$: Observable<string[]> = this.loginFormPresenterService.invalidFormErrorObject$.asObservable();
 
     constructor(private loginFormPresenterService: LoginFormPresenterService) {
     }
@@ -32,7 +34,12 @@ export class LoginFormComponent implements OnInit {
     }
 
     onLoginFormSubmit() {
-        this.loginDataEvent.emit(this.loginForm.value);
+        if (this.loginForm.valid) {
+            this.loginFormPresenterService.resetErrorObject();
+            this.loginFormSubmitEvent.emit(this.loginForm.value);
+        } else {
+            this.loginFormPresenterService.validateLoginForm(this.loginForm);
+        }
     }
 
 }

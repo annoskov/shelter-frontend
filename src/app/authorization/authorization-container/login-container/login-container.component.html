@@ -1,6 +1,6 @@
 <div class="login-page-container">
     <slt-login-form [authenticationError]="authenticationError$ | async"
-                    (loginDataEvent)="onLoginEvent($event)"
+                    (loginFormSubmitEvent)="onLoginEvent($event)"
                     (switchToRegisterFormEvent)="switchToRegisterForm($event)">
     </slt-login-form>
 </div>
