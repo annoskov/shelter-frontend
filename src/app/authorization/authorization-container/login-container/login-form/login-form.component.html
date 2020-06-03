@@ -9,7 +9,6 @@
     <div class="validation-errors" *ngIf="invalidFormErrorObject$ | async as invalidFormErrorObject">
         <div class="error-block" *ngFor="let error of invalidFormErrorObject">{{error}}</div>
     </div>
-
     <form [formGroup]="loginForm" novalidate (submit)="onLoginFormSubmit()">
         <mat-form-field class="email-form-field">
             <mat-label>E-mail</mat-label>

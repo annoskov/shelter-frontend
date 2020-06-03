@@ -1,5 +1,6 @@
 <div class="register-container">
-    <slt-register-form (registerDataEvent)="onRegisterEvent($event)"
+    <slt-register-form [registerError]="registerError$ | async"
+                       (registerFormSubmitEvent)="onRegisterEvent($event)"
                        (switchToLoginFormEvent)="switchToLoginForm($event)">
     </slt-register-form>
 </div>

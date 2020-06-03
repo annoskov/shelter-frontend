@@ -26,6 +26,21 @@ export interface LoginFailureResponse {
     errorObject: HttpErrorResponse;
 }
 
+export interface RegisterSuccessResponse {
+    isSuccess: boolean;
+    accessToken: string;
+    expiresIn: string;
+    message?: string;
+    stackTrace?: string;
+    statusCode?: number;
+}
+
+export interface RegisterFailureResponse {
+    errorMessage: string;
+    statusCode: number;
+    errorObject: HttpErrorResponse;
+}
+
 @Injectable()
 export class AuthenticationService {
 
@@ -42,7 +57,7 @@ export class AuthenticationService {
 
     register(registerData: IRegisterData) {
         const url = `${this.AUTH_BASE_URL}/register`;
-        this.httpClient.post(url, registerData);
+        return this.httpClient.post(url, registerData);
     }
 
     saveTokenToStorage(loginSuccessAction: LoginSuccessAction) {

@@ -34,8 +34,8 @@ export class LoginFormComponent implements OnInit {
     }
 
     onLoginFormSubmit() {
+        this.loginFormPresenterService.resetErrorObject();
         if (this.loginForm.valid) {
-            this.loginFormPresenterService.resetErrorObject();
             this.loginFormSubmitEvent.emit(this.loginForm.value);
         } else {
             this.loginFormPresenterService.validateLoginForm(this.loginForm);

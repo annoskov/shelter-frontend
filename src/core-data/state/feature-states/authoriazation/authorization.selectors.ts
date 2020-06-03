@@ -13,3 +13,8 @@ export const selectAuthenticationErrorState = createSelector(
     selectAuthorizationState,
     (state: AuthorizationState) => state.authenticationError,
 );
+
+export const selectRegisterErrorState = createSelector(
+    selectAuthorizationState,
+    (state: AuthorizationState) => state.registerError,
+);
