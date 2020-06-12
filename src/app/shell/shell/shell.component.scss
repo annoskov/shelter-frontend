@@ -2,4 +2,5 @@
   height: 100%;
   background: var(--background-default);
   color: var(--text-normal);
+  transition: color 0.2s ease-out, background 0.2s ease-out;
 }
