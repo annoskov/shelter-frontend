@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         MatFormFieldModule,
         MatInputModule,
         MatCheckboxModule,
+        MatSlideToggleModule,
     ],
     exports: [
         MatSidenavModule,
@@ -23,6 +25,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         MatFormFieldModule,
         MatInputModule,
         MatCheckboxModule,
+        MatSlideToggleModule,
     ]
 })
 export class MaterialModule {

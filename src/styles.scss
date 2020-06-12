@@ -28,5 +28,24 @@ $flash-cards-theme: mat-light-theme($flash-cards-primary, $flash-cards-accent, $
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import url("https://fonts.googleapis.com/css?family=PT+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+
+:root {
+  /* Colors */
+  --background-default: #fff;
+  --text-normal: black;
+}
+
+body {
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: var(--background-default);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "PT Sans", sans-serif;
+}

@@ -10,6 +10,7 @@ import {DashboardRightMenuComponent} from './dashboard-right-menu/dashboard-righ
 import {DashboardHeaderComponent} from './dashboard-header/dashboard-header.component';
 import {DashboardRightMenuFooterComponent} from './dashboard-right-menu/dashboard-right-menu-footer/dashboard-right-menu-footer.component';
 import {DashboardLeftMenuFooterComponent} from './dashboard-left-menu/dashboard-left-menu-footer/dashboard-left-menu-footer.component';
+import {ThemesModule} from '../../core-data/themes/themes.module';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import {DashboardLeftMenuFooterComponent} from './dashboard-left-menu/dashboard-
         CommonModule,
         CoreModule,
         SharedModule,
+        ThemesModule,
         DashboardRoutingModule
     ]
 })

@@ -1,0 +1,8 @@
+<div class="theme-picker">
+    <ng-container *ngIf="activeTheme$ | async as activeTheme">
+        <slt-theme-picker-toggle [activeTheme]="activeTheme"
+                                 (toggleThemeEvent)="toggleTheme(activeTheme)">
+        </slt-theme-picker-toggle>
+    </ng-container>
+</div>
+
