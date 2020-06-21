@@ -1,16 +1,20 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {DarkTheme, LightTheme, Theme} from './theme';
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {TimeTrackingService} from '../../app/core/services/time-tracking.service';
+import {takeUntil} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ThemesService {
+export class ThemesService implements OnDestroy {
 
     private themesList: BehaviorSubject<Theme[]> = new BehaviorSubject<Theme[]>([LightTheme, DarkTheme]);
     private activeTheme: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(LightTheme);
 
-    constructor() {
+    private destroyer$: Subject<boolean> = new Subject<boolean>();
+
+    constructor(private timeTrackingService: TimeTrackingService) {
     }
 
     getAvailableThemesList(): Observable<Theme[]> {
@@ -21,10 +25,29 @@ export class ThemesService {
         return this.activeTheme.asObservable();
     }
 
+    listenTimeChanges() {
+        this.timeTrackingService.listenTimeChange()
+            .pipe(takeUntil(this.destroyer$))
+            .subscribe((hour: number) => {
+                const currTheme: Theme = this.activeTheme.getValue();
+                if ((hour > 20 || hour < 7) && currTheme.name !== DarkTheme.name) {
+                    this.setActiveTheme(DarkTheme);
+                } else if (currTheme.name !== LightTheme.name) {
+                    this.setActiveTheme(LightTheme);
+                }
+            });
+    }
+
     setActiveTheme(theme: Theme) {
         Object.keys(theme.properties).forEach((property: string) => {
             document.documentElement.style.setProperty(property, theme.properties[property]);
         });
         this.activeTheme.next(theme);
     }
+
+    ngOnDestroy() {
+        this.destroyer$.next(true);
+        this.destroyer$.complete();
+    }
+
 }
