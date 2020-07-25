@@ -3,6 +3,9 @@ import {DarkTheme, LightTheme, Theme} from './theme';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {TimeTrackingService} from '../../app/core/services/time-tracking.service';
 import {takeUntil} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {UIState} from '../state/feature-states/ui/ui.reducer';
+import {ThemeChangeAction} from '../state/feature-states/ui/ui.actions';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +17,8 @@ export class ThemesService implements OnDestroy {
 
     private destroyer$: Subject<boolean> = new Subject<boolean>();
 
-    constructor(private timeTrackingService: TimeTrackingService) {
+    constructor(private timeTrackingService: TimeTrackingService,
+                private store: Store<UIState>) {
     }
 
     getAvailableThemesList(): Observable<Theme[]> {
@@ -43,6 +47,7 @@ export class ThemesService implements OnDestroy {
             document.documentElement.style.setProperty(property, theme.properties[property]);
         });
         this.activeTheme.next(theme);
+        this.store.dispatch(new ThemeChangeAction(theme));
     }
 
     ngOnDestroy() {
